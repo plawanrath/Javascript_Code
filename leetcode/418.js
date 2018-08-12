@@ -20,6 +20,7 @@ function wordsTyping(sentence, rows, cols) {
     return output;
 }
 
+//Dynamic Programming
 var wordsTypingDP = function(sentence, rows, cols) {
     let dp = new Array(sentence.length);
     let n = sentence.length;
