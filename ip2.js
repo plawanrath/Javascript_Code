@@ -9,7 +9,6 @@ function divConq(arr, start, end, target) {
 	    return end;
     } 
     let mid = Math.floor((end-start)/2);
-    console.log(mid);
     if(arr[mid]-target == 0) {
 	    return mid;
     } else if(arr[mid]-target > 0) {
