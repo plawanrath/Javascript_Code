@@ -25,5 +25,5 @@ for(var i=0;i<arr.length;i++) {
 	return min;
 }
 
-a = []
+a = [3,4,-1,2]
 console.log(smallestMissing(a));
