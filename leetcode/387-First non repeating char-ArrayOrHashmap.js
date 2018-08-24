@@ -12,7 +12,7 @@ function nonRepeating(s) {
         }
     }
     if(Object.keys(charArr).length === 0) {
-        return -1;
+        return -1; 
     }
     var min = undefined;
     for(var key in charArr) {
