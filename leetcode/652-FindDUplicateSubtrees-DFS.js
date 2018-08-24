@@ -32,10 +32,8 @@ function dfs(node) {
 let map = new Map();
 let result = [];
 var findDuplicateSubtrees = function(root) {
+    map = new Map();
+    result = [];
     dfs(root);
     return result;
 };
-
-testMap = new Map();
-testMap["test"] = 2;
-console.log(typeof testMap["test"]);

@@ -41,10 +41,4 @@ function findMatchInPairs(word, pair) {
 w1 = ["one","excellent","meal"]
 w2 = ["one","good","dinner"]
 p = [["great","good"],["extraordinary","good"],["well","good"],["wonderful","good"],["excellent","good"],["fine","good"],["nice","good"],["any","one"],["some","one"],["unique","one"],["the","one"],["an","one"],["single","one"],["a","one"],["truck","car"],["wagon","car"],["automobile","car"],["auto","car"],["vehicle","car"],["entertain","have"],["drink","have"],["eat","have"],["take","have"],["fruits","meal"],["brunch","meal"],["breakfast","meal"],["food","meal"],["dinner","meal"],["super","meal"],["lunch","meal"],["possess","own"],["keep","own"],["have","own"],["extremely","very"],["actually","very"],["really","very"],["super","very"]]
-// w1 = ["great", "acting", "skills"]
-// w2 = ["fine", "drama", "talent"]
-// pairs = [["great", "fine"], ["acting", "drama"], ["skills", "talent"]];
-// w1 = ["great"];
-// w2 = ["great"]
-// pairs = [];
 console.log(areSentenceSimilar(w1, w2, p));

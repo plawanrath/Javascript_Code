@@ -5,13 +5,12 @@ function addBoldTag(s, dict) {
             var index = s.indexOf(dict[k]);
             if(index >= 0) {
                 masked[index] = true;
-                for(var j=i;j<i+dict[k].length;j++) {
+                for(var j=index;j<index+dict[k].length;j++) {
                     masked[j] = true;
                 }
             }       
         }	
     }
-    console.log(masked);
     var charArr = s.split('');
     var res = []
     for(var i=0;i<charArr.length;i++) {
