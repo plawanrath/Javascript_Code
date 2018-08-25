@@ -42,6 +42,14 @@ LinkedList.prototype.addTohead = function(node) {
     this.head.next = node;
 }
 
+LinkedList.prototype.shiftToHead = function(node) {
+    node.prev.next = node.next;
+    node.next.prev = node.prev;
+    node.prev = null;
+    node.next = null;
+    this.addTohead(node);
+}
+
 LinkedList.prototype.removeFromTail = function() {
     if(this.tail.prev === this.head) {
         return -1;
@@ -64,7 +72,9 @@ LRUCache.prototype.get = function(key) {
         numKeys.push(parseInt(keys[i], 10));
     }
     if(numKeys.indexOf(key) >= 0) {
-        return this.map[key].value;
+        let node = this.map[key];
+        this.list.shiftToHead(node);
+        return node.value;
     }
     return -1;
 }
