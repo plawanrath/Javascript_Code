@@ -1,3 +1,4 @@
+//Brute Force - Recursion
 function canCross(stones) {
     return checkCanCross(stones, 0, 0);
 }
@@ -12,6 +13,25 @@ function checkCanCross(stones, index, jump) {
         }
     }
     return index === stones.length-1;
+}
+
+//Most Optimal
+function canCrossDP(stones) {
+    let map = new Map();
+    for(let i=0;i<stones.length;i++) {
+	    map[stones[i]] = new Set();
+    }
+    map[0].add(0);
+    for(let i=0;i<stones.length;i++) {
+        for(let k of map[stones[i]]) {
+            for(let step = k-1;step <= k+1;step++) {
+	            if(step > 0 && map[stones[i] + step] !== undefined) {
+	                map[stones[i] + step].add(step);
+                }
+            }
+        }
+    }
+    return map[stones[stones.length-1]].size > 0;
 }
 
 //With Memorization
@@ -43,24 +63,6 @@ function checkCanCrossMemory(stones, index, jump, memory) {
         memory[index][jump] = 0;
     }
     return memory[index][jump];
-}
-
-function canCrossDP(stones) {
-    let map = new Map();
-    for(let i=0;i<stones.length;i++) {
-	    map[stones[i]] = new Set();
-    }
-    map[0].add(0);
-    for(let i=0;i<stones.length;i++) {
-        for(let k of map[stones[i]]) {
-            for(let step = k-1;step <= k+1;step++) {
-	            if(step > 0 && map[stones[i] + step] !== undefined) {
-	                map[stones[i] + step].add(step);
-                }
-            }
-        }
-    }
-    return map[stones[stones.length-1]].size > 0;
 }
 
 arr = [0, 1, 3, 5, 6, 8, 12, 17]
