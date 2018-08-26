@@ -1,3 +1,8 @@
+//Same as Maze 1 (No 490) with the difference that istead of maintianing visited matrix, 
+//maintain a distance matrix which stores the distance travelled till that node.
+//Return the distance travelled to the destination node after BFS and if not reached destination
+//return -1
+
 function shortestDistance(maze, start, destination) {
     let distance = new Array(maze.length);
     let moves = [[0,1], [0,-1], [1, 0], [-1, 0]];
