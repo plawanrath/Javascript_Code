@@ -3,25 +3,25 @@ function moveUp(robot) {
 }
 
 function moveLeft(robot) {
-    robot.moveLeft();
+    robot.turnLeft();
     let moved = robot.move();
-    robot.moveRight();
+    robot.turnRight();
     return moved;
 }
 
 function moveRight(robot) {
-    robot.moveRight();
+    robot.turnRight();
     let moved = robot.move();
-    robot.moveLeft();
+    robot.turnLeft();
     return moved;
 }
 
 function moveDown(robot) {
-    robot.moveRight();
-    robot.moveRight();
+    robot.turnRight();
+    robot.turnRight();
     let moved = robot.move();
-    robot.moveLeft();
-    robot.moveLeft();
+    robot.turnLeft();
+    robot.turnLeft();
     return moved;
 }
 
