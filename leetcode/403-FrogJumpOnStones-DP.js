@@ -54,15 +54,16 @@ function canCrossDP(stones) {
     for(let i=0;i<stones.length;i++) {
         for(let k of map[stones[i]]) {
             for(let step = k-1;step <= k+1;step++) {
-	            if(step > 0 && Object.keys(map).indexOf(stones[i] + step + '') >= 0) {
+	            if(step > 0 && map[stones[i] + step] !== undefined) {
 	                map[stones[i] + step].add(step);
                 }
             }
         }
     }
-    return map[(stones[stones.length-1]) + ''].size > 0;
+    return map[stones[stones.length-1]].size > 0;
 }
 
 arr = [0, 1, 3, 5, 6, 8, 12, 17]
-console.log(canCross(arr));
+arr2 = [0,1,2,3,4,8,9,11]
 console.log(canCrossDP(arr));
+console.log(canCrossDP(arr2));
