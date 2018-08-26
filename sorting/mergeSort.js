@@ -1,30 +1,40 @@
-function mergeSort(array) {
-    if(array.length === 1) {
-        return array;
+function mergeSort(array, low, high) {
+    if(low < high) {
+        let mid = Math.floor((high+low)/2);
+        mergeSort(array, low, mid);
+        mergeSort(array, mid+1, high);
+        merge(array, low, mid, high);
     }
-    const mid = Math.floor(array.length/2);
-    const left = array.slice(0, mid);
-    const right = array.slice(mid);
-    return merge(mergeSort(left), mergeSort(right));
 }
 
-function merge(leftArr, rightArr) {
-    var c = [];
-    var i=0, j=0;
-    while(i<leftArr.length && j<rightArr.length) {
-        if(leftArr[i] < rightArr[j]) {
-            c.push(leftArr[i++]);
+function merge(array, low, mid, high) {
+    let left = low;
+    let right = mid+1;
+    let temp = [];
+    while((left <= mid) && (right <= high)) {
+        if(array[left] < array[right]) {
+            temp.push(array[left]);
+            left++;
         } else {
-            c.push(rightArr[j++]);
-        } 
+            temp.push(array[right])
+            right++;
+        }
     }
-    while(i<leftArr.length) {
-        c.push(leftArr[i++]);
+    if(left <= mid) {
+        while(left <= mid) {
+            temp.push(array[left]);
+            left++;
+        }
     }
-    while(j<rightArr.length) {
-        c.push(rightArr[j++]);
+    if(right <= high) {
+        while(right <= high) {
+            temp.push(array[right]);
+            right++;
+        }
     }
-    return c;
+    for(let i=0;i<temp.length;i++) {
+        array[low+i] = temp[i];
+    }
 }
 
 function randomArr() {
@@ -35,6 +45,8 @@ function randomArr() {
     return res;
 }
 
-// testarr = [14, 33, 27, 10, 35, 19, 42, 44]
-testarr = randomArr();
-console.log(mergeSort(testarr));
+testarr = [14, 33, 27, 10, 35, 19, 42, 44]
+// testarr = randomArr();
+mergeSort(testarr, 0, testarr.length-1);
+console.log(testarr);
+// console.log(mergeSort(testarr));
