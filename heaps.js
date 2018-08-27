@@ -1,9 +1,11 @@
-const heap = []
+function heap() {
+    this.value = [];
+}
 
-function swap(i, j) {
-    var temp = heap[i];
-    heap[i] = heap[j];
-    heap[j] = temp;
+heap.prototype.swap = function(i, j) {
+    var temp = this.value[i];
+    this.value[i] = this.value[j];
+    this.value[j] = temp;
 }
 
 function getParentIndex(index) {
@@ -18,67 +20,50 @@ function getRightChildIndex(index) {
     return (2*index)+2;
 }
 
-function addToHeap(item) {
-    heap.push(item);
-    if(heap.length === 1) {
+heap.prototype.add = function(item) {
+    this.value.push(item);
+    if(this.value.length === 1) {
         return;
     }
-    heapifyUp();
+    this.heapifyUp();
 }
 
-function removeFromHeap() {
-    if(heap.length === 0) {
-        return -1;
+heap.prototype.remove = function() {
+    if(this.value.length === 0) {
+        return NaN;
     }
-    if(heap.length === 1) {
-        return heap.pop();
+    if(this.value.length === 1) {
+        return this.value.pop();
     }
-    swap(0, heap.length-1);
-    var ret = heap.pop();
-    heapifyDown();
+    this.swap(0, this.value.length-1);
+    var ret = this.value.pop();
+    this.heapifyDown();
     return ret;
 }
 
-function heapifyUp() {
-    var index = heap.length-1;
+heap.prototype.heapifyUp = function() {
+    var index = this.value.length-1;
     var parent = getParentIndex(index);
-    while(index >= 0 && heap[parent] > heap[index]) {
-        swap(parent, index);
+    while(index >= 0 && this.value[parent] > this.value[index]) {
+        this.swap(index, parent);
         index = parent;
         parent = getParentIndex(index);
     }
 }
 
-function heapifyDown() {
-    var root = 0;
-    var lchildIndex = getLeftChildIndex(root);
-    var rchildIndex = getRightChildIndex(root);
-    while(root < heap.length && (heap[root] > heap[lchildIndex] || heap[root] > heap[rchildIndex])) {        
-        if(heap[lchildIndex] <= heap[rchildIndex]) {
-            swap(root, lchildIndex);
-            root = lchildIndex;
+heap.prototype.heapifyDown = function() {
+    var index = 0;
+    var lchildInd = getLeftChildIndex(index);
+    var rchildInd = getRightChildIndex(index);
+    while(index < this.value.length && (this.value[lchildInd] < this.value[index] || this.value[rchildInd] < this.value[index])) {
+        if(this.value[lchildInd] <= this.value[rchildInd]) {
+            this.swap(index, lchildInd);
+            index = lchildInd;
         } else {
-            swap(root, rchildIndex);
-            root = rchildIndex;
+            this.swap(index, rchildInd);
+            index = rchildInd;
         }
-        lchildIndex = getLeftChildIndex(root);
-        rchildIndex = getRightChildIndex(root);
+        lchildInd = getLeftChildIndex(index);
+        rchildInd = getRightChildIndex(index);
     }
 }
-
-addToHeap(5);
-console.log(heap);
-addToHeap(12);
-console.log(heap);
-addToHeap(20);
-console.log(heap);
-addToHeap(25);
-console.log(heap);
-addToHeap(13);
-console.log(heap);
-addToHeap(7);
-console.log(heap);
-addToHeap(3);
-console.log(heap);
-console.log(removeFromHeap());
-console.log(heap);
