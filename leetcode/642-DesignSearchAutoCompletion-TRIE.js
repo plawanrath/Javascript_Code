@@ -5,6 +5,8 @@
  * in a Max Heap. This way you can safely remove the top 3 elements from the Max Heap which give you your 3 most frequently used
  * values.
  * 
+ * NOTE:::: copies of complete sentences are stored at every TrieNode 
+ * along its path down, which has pretty high memory overhead
  */
 function heap() {
     this.value = [];
