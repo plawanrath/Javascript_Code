@@ -1,3 +1,100 @@
+/**
+ * Intuition 
+ * 
+ * Let's add flowers in the order they bloom. When each flower blooms, 
+ * we check it's neighbors to see if they can satisfy the condition with the current flower. 
+ * 
+ * Algorithm 
+ * We'll maintain active, a sorted data structure(BST) containing every flower that has currently bloomed. 
+ * When we add a flower to active, we should check it's lower and higher neighbors. If some neighbor 
+ * satisfies the condition, we know the condition occurred first on this day.
+ */
+class Node {
+    constructor(val) {
+        this.value = val;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+class BinarySearchTree {
+    constructor() {
+        this.root = null;
+    }
+}
+
+BinarySearchTree.prototype.add = function(val) {
+    let curr = this.root;
+    if(curr === null) {
+        this.root = new Node(val);
+        return;
+    }
+    let newNode = new Node(val);
+    while(curr !== null) {
+        if(val < curr.value) {
+            if(curr.left === null) {
+                curr.left = newNode;
+                break;
+            } else {
+                curr = curr.left;
+            }
+        } else {
+            if(curr.right !== null) {
+                curr.right = newNode;
+                break;
+            } else {
+                curr = curr.right;
+            }
+        }
+    }
+}
+
+//Find Largest Element smaller than given
+BinarySearchTree.prototype.lower = function(val) {
+    let min = null;
+    let temp = this.root;
+    while(temp !== null) {
+      if(val > temp.value) {
+        min = temp.value;
+        temp = temp.right;
+      } else {
+        temp = temp.left;
+      }
+    }
+    return min;    
+}
+
+//FInd the Smallest Element greater than given
+BinarySearchTree.prototype.higher = function(val) {
+    let grt = null;
+    let temp = this.root;
+    while(temp !== null) {
+      if(val < temp.value) {
+        grt = temp.value;
+        temp = temp.right;
+      } else {
+        temp = temp.left;
+      }
+    }
+    return grt;  
+}
+
+function kEmptySlotsBST(flowers, k) {
+    let active = new BinarySearchTree();
+    let day = 0;
+    for (let flower of flowers) {
+        day++;
+        active.add(flower);
+        let lower = active.lower(flower)
+        let higher = active.higher(flower);
+        if (lower != null && flower - lower - 1 == k ||
+                higher != null && higher - flower - 1 == k)
+            return day;
+    }
+    return -1;
+}
+
+
 function kEmptySlots(flowers, k) {
     //Let Days[x] = i be the time that flower at position x blooms
     let days = new Array(flowers.length);

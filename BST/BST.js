@@ -47,6 +47,36 @@ BinarySearchTree.prototype.print = function(node) {
     }
 }
 
+//Find Largest Element smaller than given
+BinarySearchTree.prototype.lower = function(val) {
+    let min = null;
+    let temp = this.root;
+    while(temp !== null) {
+      if(val > temp.value) {
+        min = temp.value;
+        temp = temp.right;
+      } else {
+        temp = temp.left;
+      }
+    }
+    return min;    
+}
+
+//FInd the Smallest Element greater than given
+BinarySearchTree.prototype.higher = function(val) {
+    let grt = null;
+    let temp = this.root;
+    while(temp !== null) {
+      if(val < temp.value) {
+        grt = temp.value;
+        temp = temp.right;
+      } else {
+        temp = temp.left;
+      }
+    }
+    return grt;  
+}
+
 //Find min node from BST
 BinarySearchTree.prototype.minNode = function(node) {
     if(node === null) {
