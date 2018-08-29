@@ -1,14 +1,17 @@
 function twoSum(nums, target) {
-    var res = [];
-    for(var i=0;i<nums.length;i++) {
-        var index = nums.indexOf(target-nums[i]);
-        if( index >= 0 && index !== i) {
+    let map = new Map();
+    let res = [];
+    for(let i=0;i<nums.length;i++) {
+        map[target-nums[i]] = i;
+    }
+    for(let i=0;i<nums.length;i++) {
+        if(map[nums[i]] !== undefined && map[nums[i]] !== i) {
             res.push(i);
-            res.push(index);
+            res.push(map[nums[i]]);
             return res;
         }
     }
-    return -1;
+    return res;
 }
 
 testarr = [2, 7, 11, 15];
