@@ -1,7 +1,7 @@
 /**
  * To solve this problem optimally in O(n2) time you will need to create the trie. The Trie will store the sentence and counts
  * Once we have the Trie, the next step would be to go over the prefix and for each prefix item entered, keep going down the
- * Trie and if youa are able to get to the end of the Trie, look at all the sentences at the end of the Trie and put them 
+ * Trie and if you are able to get to the end of the Trie, look at all the sentences at the end of the Trie and put them 
  * in a Max Heap. This way you can safely remove the top 3 elements from the Max Heap which give you your 3 most frequently used
  * values.
  * 
