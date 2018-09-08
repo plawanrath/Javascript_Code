@@ -60,6 +60,30 @@ function recDFSInorder(root, res) {
     return res;
 }
 
+function BFSUsingDFS(root) {
+    let result = [];
+    if(root == null) {
+        return result;
+    }
+    let stack = [];
+    stack.push(root);
+    result.push(root.val);
+    while(stack.length > 0) {
+        let n = stack.pop();
+        if(n.left !== null || n.right !== null) {
+            if(n.left !== null) {
+                stack.push(n.left);
+                result.push(n.left.val);
+            }
+            if(n.right !== null) {
+                stack.push(n.right);
+                result.push(n.right.val);
+            }         
+        }
+    }
+    return result;
+}
+
 //creating a sample tree
 let sampleTreeRoot = new TreeNode(1);
 let left1 = new TreeNode(2);
