@@ -20,8 +20,8 @@ function wordSearch(s, wordDict, start, memory) {
     return memory[start] !== undefined;
 }
 
-function wordBreakDP(s, wordDict) {
-	var memory = new Array(s.length+1);
+function wordBreakDP(s, wordDict) { //you can save time by converting wordDict to set so you will not need to do indexOf which is O(n)
+	var memory = new Array(s.length+1).fill(false);
 	memory[0] = true; //null string is true
 	for(var i=1;i<=s.length;i++) {
 		for(j=0;j<=i;j++) {
@@ -31,7 +31,7 @@ function wordBreakDP(s, wordDict) {
 			}
 		}
 	}
-	return memory[s.length] == true;
+	return memory[s.length];
 }
 
 
