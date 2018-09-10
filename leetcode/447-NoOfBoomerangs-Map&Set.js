@@ -5,7 +5,7 @@ var numberOfBoomerangs = function(points) {
         let map = new Map();
         for(let j=0;j<points.length;j++) {
             let dis = distance(curr, points[j]);
-            if(Object.keys(map).indexOf(dis + '') < 0) {
+            if(!map[dis + '']) {
             map[dis] = new Set();
         }
         map[dis].add(points[j]);
