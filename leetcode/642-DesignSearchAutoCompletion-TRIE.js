@@ -117,9 +117,8 @@ function addToTrie(sentence, count) {
         curr = next;
         if(curr.counts[sentence] === undefined) {
             curr.counts[sentence] = 0;
-        } else {
-            curr.counts[sentence] + count;
-        }
+        } 
+        curr.counts[sentence] += count;
     }
     curr.isWord = true;
 }
