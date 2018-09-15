@@ -13,8 +13,10 @@ var partitionLabels = function(S) {
     for(let i=0;i<S.length;i++) {
         j = Math.max(j, last[S[i]]);
         if(i == j) {
-            res.push(i - anchor + 1);
-            anchor = i + 1;
+            res.push(i - anchor + 1); //when you get to the last occarance of a character
+            //in the string, add that position to result but also put an anchor down(a marker)
+            anchor = i + 1; //do next partition will be after i + 1 (anchred at i). The
+            //ancor helps you find the length of the parittions in a single parse
         }
     }
     return res;
