@@ -13,7 +13,7 @@ function mergeIntervals(intervals) {
     res.push(intervals[0]);
     while(index < intervals.length) {
         let val = res[res.length-1];
-        if(val.end < intervals[index].start && val.end < intervals[index].end) {
+        if(val.end < intervals[index].start) {
             res.push(intervals[index]);
         } else {
             let remove = res.pop();
