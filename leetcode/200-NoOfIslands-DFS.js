@@ -1,14 +1,16 @@
-function dfs(grid, row, col) {
-    const rowLen = grid.length;
-    const colLen = grid[0].length;
-    if(row < 0 || row >= rowLen || col < 0 || col >= colLen || grid[row][col] === '0') {
+let dirs = [[0,1], [0,-1], [1,0], [-1,0]]
+function dfs(grid, r, c) {
+    let rc = grid.length;
+    let cc = grid[0].length;
+    if(r < 0 || c < 0 || r >= rc || c >= cc || grid[r][c] === '0') {
         return;
     }
-    grid[row][col] = '0';
-    dfs(grid, row-1, col);
-    dfs(grid, row+1, col);
-    dfs(grid, row, col-1);
-    dfs(grid, row, col+1);
+    grid[r][c] = '0';
+    for(let dir of dirs) {
+        let x = r + dir[0];
+        let y = c + dir[1];
+        dfs(grid, x, y);
+    }
 }
 
 function noOfIslands(grid) {

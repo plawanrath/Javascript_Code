@@ -13,12 +13,12 @@ class Trie {
      * @return {void}
      */
     insert(word) {
-        let trnode = this.nodes;
+        let trnode = this;
         for(let i=0;i<word.length;i++) {
-            if(!trnode[word[i]]) {
-                trnode[word[i]] = new Trie();
+            if(!trnode.nodes[word[i]]) {
+                trnode.nodes[word[i]] = new Trie();
             }
-            trnode = trnode[word[i]];
+            trnode = trnode.nodes[word[i]];
         }
         trnode.isWord = true;
     }
@@ -28,12 +28,12 @@ class Trie {
      *  @return {boolean}
      */
     search(word) {
-        let trnode = this.nodes;
+        let trnode = this;
         for(let i=0;i<word.length;i++) {
-            if(!trnode[word[i]]) {
+            if(!trnode.nodes[word[i]]) {
                 return false;
             }
-            trnode = trnode[word[i]];
+            trnode = trnode.nodes[word[i]];
         }
         return trnode.isWord;
     }
@@ -44,12 +44,12 @@ class Trie {
      * @param {boolean}
      */
     startsWith(prefix) {
-        let trnode = this.nodes;
+        let trnode = this;
         for(let i=0;i<prefix.length;i++) {
-            if(!trnode[prefix[i]]) {
+            if(!trnode.nodes[prefix[i]]) {
                 return false;
             }
-            trnode = trnode[prefix[i]];
+            trnode = trnode.nodes[prefix[i]];
         }
         return true;
     }
@@ -66,5 +66,5 @@ class Trie {
  tobj = new Trie();
  tobj.insert("test");
 //  console.log(tobj);
-console.log(tobj.startsWith("e"));
+console.log(tobj.startsWith("t"));
 console.log(tobj.search("test"));
