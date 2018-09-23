@@ -1,53 +1,57 @@
 /**
  * initialize your data structure here.
  */
-var MinStack = function() {
-    this.array = [];
-    this.min = undefined;
-};
+class MinStack {
+    constructor() {
+        this.min = Number.MAX_VALUE;
+        this.next = null;
+        this.head = null;
+        this.value = null;
+    }
+}
 
 /** 
  * @param {number} x
  * @return {void}
  */
 MinStack.prototype.push = function(x) {
-    this.array.push(x);
-    this.updateMin();
+    if(this.head == null) {
+        this.head = new MinStack();
+        this.head.value = x;
+        this.head.min = x;
+    } else {
+        this.newHead = new MinStack();
+        this.newHead.value = x;
+        this.newHead.min = Math.min(x, this.head.min);
+        this.newHead.next = this.head;
+        this.head = this.newHead;
+    }
 };
 
 /**
  * @return {void}
  */
 MinStack.prototype.pop = function() {
-    this.array.pop();
-    this.min = undefined;
-    this.updateMin();
+    if(this.head == null) {
+        return;
+    }
+    this.head = this.head.next;
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.top = function() {
-    return this.array[array.length-1];
+    return this.head.value;
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.getMin = function() {
-    return this.min;
+    return this.head.min;
 };
 
-MinStack.prototype.updateMin = function() {
-    if(this.min === undefined) {
-        this.min = this.array[0];
-    }
-    for(var i=0;i<this.array.length;i++) {
-        if(this.array[i] < this.min) {
-            this.min = this.array[i];
-        }
-    }
-}
 /** 
  * Your MinStack object will be instantiated and called as such:
  * var obj = Object.create(MinStack).createNew()
@@ -57,14 +61,13 @@ MinStack.prototype.updateMin = function() {
  * var param_4 = obj.getMin()
  */
 
-var stk = new MinStack();
-stk.push(-2);
-console.log(stk.array);
-stk.push(0);
-console.log(stk.array);
-stk.push(-3);
-console.log(stk.array);
-console.log(stk.getMin());
-stk.pop();
-console.log(stk.array);
-console.log(stk.getMin());
+let min = new MinStack();
+min.push(12);
+min.push(4);
+min.push(10);
+console.log(min.getMin());
+console.log(min.top());
+min.pop();
+min.pop();
+console.log(min.getMin());
+console.log(min.top());
