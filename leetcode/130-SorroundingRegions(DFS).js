@@ -2,6 +2,7 @@
  * @param {character[][]} board
  * @return {void} Do not return anything, modify board in-place instead.
  */
+//Run dfs around edges and mark 'O' values so that you don't change them to 'X's
 var solve = function(board) {
     if(board.length == 0 || board[0].length == 0) {
         return;
@@ -28,16 +29,15 @@ var solve = function(board) {
     }
 };
 
+let dirs = [[0,1], [0,-1], [1,0], [-1,0]];
 function dfs(board, i, j) {
-    if(i < 0 || i >= board.length || j < 0 || j >= board[0].length) {
-        return;
-    }
-    if(board[i][j] == 'X' || board[i][j] == '*') {
+    if(i < 0 || i >= board.length || j < 0 || j >= board[0].length || board[i][j] == 'X' || board[i][j] == '*') {
         return;
     }
     board[i][j] = '*';
-    dfs(board, i-1, j);
-    dfs(board, i, j-1);
-    dfs(board, i+1, j);
-    dfs(board, i, j+1);
+    for(let dir of dirs) {
+        let x = i + dir[0];
+        let y = j + dir[1];
+        dfs(board, x, y);
+    }
 }
