@@ -1,13 +1,17 @@
 function sortList(head) {
-    if(head === null) {
-        return null;
+    if (head == null || head.next == null) return head;
+    let slow = head;
+    let fast = head.next;
+    while(fast.next != null && fast.next.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
     }
-    if(head.next === null) {
-        return head;
-    }
-    let mid = getMiddle(head);
-    let rightHead = mid.next;
-    return merge(sortList(head), sortList(rightHead));
+    fast = slow;
+    slow = slow.next;
+    fast.next = null;
+    let first = sortList(head);
+    let second = sortList(slow);
+    return merge(first, second);  
 }
 
 function merge(head1, head2) {
@@ -28,14 +32,4 @@ function merge(head1, head2) {
         curr.next = head1;
     }
     return dummy.next;
-}
-
-function getMiddle(head) {
-    let slow = head;
-    let fast = head;
-    while(fast !== null && fast.next !== null) {
-        fast = fast.next.next;
-        slow = slow.next;
-    }
-    return slow;
 }
