@@ -6,6 +6,9 @@
 function wordBreak(s, wordDict) {
     let wordSet = new Set(wordDict);
     let dp = new Array(s.length+1);
+    for(let i=0;i<dp.length;i++) {
+        dp[i] = [];
+    }
     let initial = [];
     initial.push('');
     dp[0] = initial;
