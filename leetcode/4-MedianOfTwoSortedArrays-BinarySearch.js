@@ -9,7 +9,7 @@ function findMedianSortedArray(nums1, nums2) {
         j = Math.floor((n + m + 1)/2) - i;
         if(i < n && j > 0 && nums2[j - 1] > nums1[i]) {
             min_index = i + 1;
-        } else if(i > 0 && j < m && n[j] < nums1[i - 1]) {
+        } else if(i > 0 && j < m && nums2[j] < nums1[i - 1]) {
             max_index = i - 1;
         } else {
             if(i == 0) {
@@ -34,7 +34,7 @@ function findMedianSortedArray(nums1, nums2) {
     return (median + Math.min(nums1[i], nums2[j])/2);
 }
 
-nums1 = [1, 2]
+nums1 = [1, 2, 5]
 nums2 = [3, 4]
 
 console.log(findMedianSortedArray(nums1, nums2));
