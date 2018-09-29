@@ -18,7 +18,7 @@ function swapPairs(head) {
     let prev = newHead;
     while(head != null && head.next != null) {
         prev.next = head.next;
-        head.next = head.next.next;
+        head.next = prev.next.next;
         prev.next.next = head;
 
         head = head.next;
